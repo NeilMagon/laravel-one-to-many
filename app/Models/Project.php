@@ -16,4 +16,8 @@ class Project extends Model
         'summary',
         'cover_image'
     ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }
