@@ -30,7 +30,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -45,7 +47,8 @@ class ProjectController extends Controller
             'name' => 'required|min:5|max:250|unique:projects,name',
             'client_name' => 'nullable|min:5',
             'summary' => 'nullable|min:20',
-            'cover_image' => 'nullable|image|max:256'
+            'cover_image' => 'nullable|image|max:256',
+            'type_id' => 'required|exists:types,id',
         ]);
 
         $formData = $request->all();
